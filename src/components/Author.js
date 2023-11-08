@@ -10,8 +10,6 @@ export default function Author(props) {
         }
     });
 
-    console.log('Author', id)
-
     useEffect(() => {
         getAuthor(id).then(data => {
             setAuthor(data?.author);
@@ -21,9 +19,12 @@ export default function Author(props) {
     return (
         <div>
             <h2 className="page-header">{author.name}</h2>
-            <div className="btn-row">
-                <Link to={`/authors/${id}`}>
+            <div className="btn-row mt-2">
+                <Link className='btn btn-secondary' to={`/authors/${id}`}>
                     Edit
+                </Link>
+                <Link className='btn m-2 btn-danger' to={`/authors/${id}`}>
+                    Delete
                 </Link>
             </div>
         </div>

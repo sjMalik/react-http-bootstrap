@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Author from "./components/Author";
 import NewAuthor from "./components/NewAuthor";
+import UpdateAuthor from "./components/UpdateAuthor";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path='/authors' element={<Authors />}></Route>
         <Route path='/authors/:id' element={<Author />}></Route>
+        <Route path='/authors/:id/edit' element={<UpdateAuthor />}></Route>
         <Route path='/authors/new' element={<NewAuthor />}></Route>
       </Routes>
     </div>

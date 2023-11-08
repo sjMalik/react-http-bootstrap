@@ -14,3 +14,16 @@ export function createAuthor(data) {
         data
     })
 }
+
+export function updateAuthor(id, data) {
+    return makeRequest(`/authors/${id}`, {
+        method: "PUT",
+        data
+    })
+}
+
+export function deleteAuthor(id) {
+    return makeRequest(`/authors/${id}`, {
+        method: 'DELETE'
+    })
+}
