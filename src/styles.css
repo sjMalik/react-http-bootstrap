@@ -1,22 +1,9 @@
-:root {
-    --nav-title-font-size: 2rem;
-    --nav-title-font-weight: bold;
-}
-
-.container {
-    max-width: 1100px !important;
-    /* Every side the margin will be fixed */
-    margin: auto;
-    /* so that our container can touch the buttom */
-    margin-bottom: 3rem;
-}
-
 .header-title {
-    color: var(--color-text-light);
+    color: black;
     /* Remove the bullet and all the styles */
     text-decoration: none;
-    font-size: var(--nav-title-font-size);
-    font-weight: var(--nav-title-font-weight);
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .header-nav {
@@ -40,7 +27,7 @@
 
 .header-nav li a {
     text-decoration: none;
-    color: var(--color-text-light);
+    color: black;
     font-weight: bold;
     padding: 1rem;
 }
