@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { deleteAuthor, getAuthors } from '../services/author';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Authors() {
     const [authors, setAuthors] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
-    const navigate = useNavigate();
+    const [indexToRemove, setIndexToRemove] = useState(null)
 
-    const openModal = (id) => {
+    const openModal = (id, index) => {
         setSelectedId(id);
+        setIndexToRemove(index);
         setShowModal(true);
     };
 
@@ -21,13 +22,17 @@ export default function Authors() {
         getAuthors().then(data => {
             setAuthors(data?.authors);
         })
-    }, [authors])
+    }, [])
 
     const removeAuthor = () => {
         closeModal();
         deleteAuthor(selectedId)
             .then(data => {
-                setAuthors([])
+                setAuthors((prevState) => {
+                    const newState = [...prevState];
+                    newState.splice(indexToRemove, 1);
+                    return newState;
+                })
             })
     }
 
@@ -60,15 +65,15 @@ export default function Authors() {
                 </div>
             )}
 
-            <h2 className="text-center mb-3">Author List</h2>
+            <h2 className="page-header mb-3">Author List</h2>
             <div className="bs-component">
                 {authors.length === 0 ? (
                     <div className="text-center mt-4">No records found</div>
                 ) : (
                     <div className="list-group">
-                        {authors.map((author) => {
+                        {authors.map((author, index) => {
                             return (
-                                <li key={author._id} className="list-group-item">
+                                <li key={index} className="list-group-item">
                                     <span className='author-name'>{author.name}</span><br />
                                     <Link className='btn btn-primary' to={`/authors/${author._id}`}>
                                         View
@@ -76,7 +81,7 @@ export default function Authors() {
                                     <Link className='btn m-2 btn-secondary' to={`/authors/${author._id}/edit`}>
                                         Edit
                                     </Link>
-                                    <button className='btn btn-danger' onClick={() => openModal(author._id)}>
+                                    <button className='btn btn-danger' onClick={() => openModal(author._id, index)}>
                                         Delete
                                     </button>
                                 </li>

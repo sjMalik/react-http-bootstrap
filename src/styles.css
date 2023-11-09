@@ -1,3 +1,8 @@
+:root {
+    font-family: "Trirong", serif;
+    font-size: 18px;
+}
+
 .header-title {
     color: black;
     /* Remove the bullet and all the styles */
@@ -38,6 +43,16 @@
 
 .author-name {
     font-size: 1.5rem;
+}
+
+.book-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.page-header {
+    font-size: 1.8rem;
+    font-weight: 300;
 }
 
 

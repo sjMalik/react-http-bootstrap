@@ -23,9 +23,6 @@ export default function Author(props) {
                 <Link className='btn btn-secondary' to={`/authors/${id}/edit`}>
                     Edit
                 </Link>
-                {/* <Link className='btn m-2 btn-danger' to={`/authors/${id}`}>
-                    Delete
-                </Link> */}
             </div>
         </div>
     )

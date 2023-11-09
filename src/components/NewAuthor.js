@@ -22,26 +22,20 @@ export default function NewAuthor() {
     }
 
     return (
-        <div className="submit-form">
-            <h2>New Author</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="user">Author Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="name"
-                        required
-                        value={author.name}
-                        onChange={handleInputChange}
-                        name="name"
-                    />
-                </div>
-
-                <button type='submit' className="btn btn-success mt-2">
-                    Submit
-                </button>
-            </form>
+        <div className="card">
+            <div className="card-header">
+                <h5>New Author</h5>
+            </div>
+            <div className="card-body">
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="name" className="form-label">Name</label>
+                        <input value={author.name} onChange={handleInputChange} type="text" className="form-control" id="name" name="name" />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="reset" className="btn btn-secondary m-2">Reset</button>
+                </form>
+            </div>
         </div>
     )
 }
