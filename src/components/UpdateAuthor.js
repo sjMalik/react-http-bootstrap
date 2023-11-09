@@ -31,7 +31,7 @@ export default function UpdateAuthor() {
 
     return (
         <div className="submit-form">
-            <h2>New Author</h2>
+            <h2>Update Author</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="user">Author Name</label>

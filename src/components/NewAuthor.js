@@ -17,7 +17,7 @@ export default function NewAuthor() {
     const handleSubmit = (e) => {
         e.preventDefault()
         createAuthor(author).then(res => {
-            navigate('/')
+            navigate('/authors')
         })
     }
 

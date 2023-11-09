@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAuthors } from '../services/author';
+import { deleteAuthor, getAuthors } from '../services/author';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Authors() {
@@ -8,8 +8,8 @@ export default function Authors() {
     const [selectedId, setSelectedId] = useState(null);
     const navigate = useNavigate();
 
-    const openModal = () => {
-        // setSelectedId(id);
+    const openModal = (id) => {
+        setSelectedId(id);
         setShowModal(true);
     };
 
@@ -21,22 +21,18 @@ export default function Authors() {
         getAuthors().then(data => {
             setAuthors(data?.authors);
         })
-    }, [])
+    }, [authors])
 
-    const deleteAuthor = () => {
+    const removeAuthor = () => {
+        closeModal();
         deleteAuthor(selectedId)
             .then(data => {
-                closeModal();
-                navigate('/authors')
+                setAuthors([])
             })
     }
 
     return (
         <div>
-            <button className="btn btn-primary" onClick={openModal}>
-                Open Modal
-            </button>
-
             {showModal && (
                 <div className="modal show" tabIndex="-1" role="dialog" style={{ display: 'block' }}>
                     <div className="modal-dialog">
@@ -52,10 +48,10 @@ export default function Authors() {
                                 <p>Are you sure to want remove the Author?</p>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-danger" onClick={closeModal}>
+                                <button type="button" className="btn btn-danger" onClick={removeAuthor}>
                                     Confirm
                                 </button>
-                                <button type="button" className="btn btn-secondary" onClick={deleteAuthor}>
+                                <button type="button" className="btn btn-secondary" onClick={closeModal}>
                                     Close
                                 </button>
                             </div>
@@ -80,7 +76,7 @@ export default function Authors() {
                                     <Link className='btn m-2 btn-secondary' to={`/authors/${author._id}/edit`}>
                                         Edit
                                     </Link>
-                                    <button className='btn btn-danger' onClick={openModal}>
+                                    <button className='btn btn-danger' onClick={() => openModal(author._id)}>
                                         Delete
                                     </button>
                                 </li>
