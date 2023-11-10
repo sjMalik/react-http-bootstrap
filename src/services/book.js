@@ -18,3 +18,16 @@ export function createBook(data) {
         data
     })
 }
+
+export function updateBook(data, id) {
+    return makeRequest(`/books/${id}`, {
+        method: 'PUT',
+        data
+    })
+}
+
+export function deleteBook(id) {
+    return makeRequest(`/books/${id}`, {
+        method: 'DELETE'
+    })
+}
